@@ -3,6 +3,12 @@
     --google-reviews-secondary: #6383ff;
     --google-reviews-nav-primary: #6383ff;
     --google-reviews-nav-secondary: #4067FF;
+
+    --google-reviews-body-fontsize: inherit; /* 14px */
+    --google-reviews-body-lineheight: inherit; /* 24px */
+
+    --google-reviews-star-icon: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/star.svg');
+    --google-reviews-google-icon: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/google-icon.svg');
 }
 
 .reviews-container[data-is-slider="true"] .reviews-grid {
@@ -59,6 +65,8 @@
     position: relative;
     padding-left: 30px;
     margin-bottom: 20px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .reviews-container .reviews-grid .review-item .review-stars:before {
@@ -82,7 +90,7 @@
 }
 
 .reviews-container .reviews-grid .review-item .review-stars ul li {
-    background-image: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/star.svg');
+    background-image: var(--google-reviews-star-icon);
     background-size: contain;
     background-repeat: no-repeat;
     width: 21px;
@@ -101,6 +109,7 @@
     padding: 35px;
     background-color: #FFF;
     margin-bottom: 35px;
+    position: relative;
 }
 
 .reviews-container .reviews-grid .review-body p {
@@ -108,7 +117,8 @@
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: var(--google-reviews-body-fontsize);
+    line-height: var(--google-reviews-body-lineheight);
     color: #6E6E6E;
     margin-bottom: 35px;
 	transition: all 0.3s;
@@ -167,7 +177,7 @@
 
 .reviews-container .reviews-grid .review-item .review-body .review-google {
     vertical-align: middle;
-    background-image: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/google-icon.svg');
+    background-image: var(--google-reviews-google-icon);
     height: 23px;
     width: 23px;
     background-size: contain;

@@ -107,6 +107,7 @@ window.onload = function () {
                 let name = review.author_name;
                 let date = review.relative_time_description;
                 let link = "";
+                let google_icon = `<div class="review-google"></div>`;
 
                 const replace_obj = {
                     index,
@@ -115,7 +116,8 @@ window.onload = function () {
                     stars,
                     name,
                     date,
-                    link
+                    link,
+                    google_icon
                 };
 
                 var template_string = config.template;

@@ -42,7 +42,7 @@ class Embark_GoogleReviews
         <div class='review-read-more'>
             <a href='javascript: void(0);'>Read more</a>
         </div>
-        <div class='review-google'></div>
+        {{google_icon}}
     </div>
     <div class='review-author-picture'>
         {{picture}}
@@ -113,7 +113,7 @@ EOD;
     {
         add_options_page(
             'Google Reviews Settings', // page_title
-            'Google Reviews Settings', // menu_title
+            'Google Reviews', // menu_title
             'manage_options', // capability
             'embark-google-reviews', // menu_slug
             array('Embark_GoogleReviews', '_embark_google_reviews_settings_create_admin_page') // function
@@ -253,6 +253,7 @@ settings_fields('_embark_google_reviews_settings_option_group');
             "picture",
             "name",
             "date",
+            "google_icon",
         ];
         ?>
         These tags can be used in the template section
