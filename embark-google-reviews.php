@@ -202,7 +202,7 @@ settings_fields('_embark_google_reviews_settings_option_group');
 
         add_settings_section(
             '_embark_google_reviews_settings_setting_section_2', // id
-            'tags', // title
+            'Tags/CSS Variables', // title
             array('Embark_GoogleReviews', '_embark_google_reviews_settings_section_info_2'), // callback
             'embark-google-reviews-settings-admin' // page
         );
@@ -269,7 +269,27 @@ foreach ($tags as $tag) {
         </div>
         <br />
     <?php
-echo self::_template();
+
+        $vars = [
+            "--google-reviews-primary",
+            "--google-reviews-secondary",
+            "--google-reviews-nav-primary",
+            "--google-reviews-nav-secondary",
+
+            "--google-reviews-body-fontsize",
+            "--google-reviews-body-lineheight",
+
+            "--google-reviews-star-icon",
+            "--google-reviews-google-icon",
+        ];
+
+        ?>
+        These css variables can be modified in your theme stylesheet
+        <?php
+foreach ($vars as $var) {
+            echo '<br /><code style="margin: 0 5px; display: inline-block; background-color: #dbdbdb;"><pre style="margin: 0; min-width: 300px;">' . $var . '</pre></code>';
+        }
+        echo self::_template();
     }
 
     public function google_api_key_0_callback()
