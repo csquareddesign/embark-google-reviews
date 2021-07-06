@@ -9,18 +9,14 @@
 /*
 
 Plugin Name: Embark Google Reviews
-
 Description: Used to display a grid or slider feed of Google Reviews.
-
 Version: 1.0.0
-
 Author: Embark Agency
-
 Author URI: https://www.embarkagency.com.au/
-
 License: GPLv2 or later
-
 Text Domain: embark
+
+GitHub Plugin URI: https://github.com/csquareddesign/embark-google-reviews
 
  */
 
