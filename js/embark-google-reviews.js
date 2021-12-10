@@ -159,40 +159,76 @@ window.onload = function () {
                     if (sortedReviews.length > 0) {
                         renderReviews(sortedReviews, targetDiv, config);
                         if(config.isSlider) {
-                            jQuery(targetDiv).slick({
-                                'slidesToShow': 3,
-                                'autoplay': true,
-                                'infinite': true,
-                                'arrows': true,
-                                'prevArrow': jQuery(targetContainer).find('.reviews-arrow.prev'),
-                                'nextArrow': jQuery(targetContainer).find('.reviews-arrow.next'),
-                                'adaptiveHeight': false,
+                            // jQuery(targetDiv).slick({
+                            //     'slidesToShow': 3,
+                            //     'autoplay': true,
+                            //     'infinite': true,
+                            //     'arrows': true,
+                            //     'prevArrow': jQuery(targetContainer).find('.reviews-arrow.prev'),
+                            //     'nextArrow': jQuery(targetContainer).find('.reviews-arrow.next'),
+                            //     'adaptiveHeight': false,
             
-                                responsive: [{
-                                        breakpoint: 1351,
-                                        settings: {
-                                            slidesToShow: 2,
-                                            adaptiveHeight: false,
-                                        }
+                            //     responsive: [{
+                            //             breakpoint: 1351,
+                            //             settings: {
+                            //                 slidesToShow: 2,
+                            //                 adaptiveHeight: false,
+                            //             }
+                            //         },
+                            //         {
+                            //             breakpoint: 1024,
+                            //             settings: {
+                            //                 slidesToShow: 1,
+                            //                 adaptiveHeight: true,
+                            //                 arrows: true
+                            //             }
+                            //         },
+                            //         {
+                            //             breakpoint: 768,
+                            //             settings: {
+                            //                 slidesToShow: 1,
+                            //                 adaptiveHeight: true,
+                            //                 arrows: false
+                            //             }
+                            //         }
+                            //     ]
+                            // });
+
+                            window.googleReviewsSlider = tns({
+                                container: targetDiv,
+                                rewind: false,
+                                autoplay: true,
+
+                                prevButton: targetContainer.querySelector(".reviews-arrow.prev"),
+                                nextButton: targetContainer.querySelector(".reviews-arrow.next"),
+
+                                items: 1,
+                                autoHeight: true,
+
+                                nav: false,
+                                autoplayButton: false,
+                                autoplayButtonOutput: false,
+                                gutter: 20,
+                                mouseDrag: true,
+                                touch: true,
+                                edgePadding: 30,
+                                autoplayTimeout: 1000000,
+                                loop: true,
+                                responsive: {
+                                    768: {
+                                        items: 2,
                                     },
-                                    {
-                                        breakpoint: 1024,
-                                        settings: {
-                                            slidesToShow: 1,
-                                            adaptiveHeight: true,
-                                            arrows: true
-                                        }
+                                    1024: {
+                                        autoHeight: false,
+
                                     },
-                                    {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 1,
-                                            adaptiveHeight: true,
-                                            arrows: false
-                                        }
+                                    1351: {
+                                        edgePadding: 10,
+                                        items: 3
                                     }
-                                ]
+                                }
                             });
+
                         }
 
                         if(config.readMore) {

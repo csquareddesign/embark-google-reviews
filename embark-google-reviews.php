@@ -16,7 +16,7 @@ Author URI: https://www.embarkagency.com.au/
 License: GPLv2 or later
 Text Domain: embark
 
-GitHub Plugin URI: https://github.com/csquareddesign/embark-google-reviews
+GitHub Plugin URI: csquareddesign/embark-google-reviews
 
  */
 
@@ -396,6 +396,11 @@ foreach ($vars as $var) {
         wp_enqueue_style('embark-google-reviews-css', plugin_dir_url(__FILE__) . 'css/embark-google-reviews.css');
 
         if ($config->is_slider === 'true') {
+            // Tiny Slider
+            wp_enqueue_style( 'tiny-css', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css' );
+            wp_enqueue_script( 'tiny-js', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js', array(), '', true );
+
+            // Slick Slider
             wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
             wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array(), '', true);
         }

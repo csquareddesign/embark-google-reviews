@@ -4,19 +4,21 @@
     --google-reviews-nav-primary: #6383ff;
     --google-reviews-nav-secondary: #4067FF;
 
-    --google-reviews-body-fontsize: inherit; /* 14px */
-    --google-reviews-body-lineheight: inherit; /* 24px */
+    --google-reviews-body-fontsize: inherit;
+    /* 14px */
+    --google-reviews-body-lineheight: inherit;
+    /* 24px */
 
     --google-reviews-star-icon: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/star.svg');
     --google-reviews-google-icon: url('https://csqddev.com.au/tgs/wp-content/uploads/2021/06/google-icon.svg');
 }
 
 .reviews-container[data-is-slider="true"] .reviews-grid {
-	padding: 30px 50px 0 50px;
-	margin-top: -20px;
-    overflow: hidden;
+    padding: 50px 0;
+    margin-top: -20px;
 }
 
+/* 
 .reviews-container[data-is-slider="true"] .reviews-grid:before,
 .reviews-container[data-is-slider="true"] .reviews-grid:after {
 	content: "";
@@ -26,16 +28,15 @@
 	top: 0;
 	opacity: 1;
 	z-index: 1;
-}
+} */
 
 .reviews-container[data-is-slider="false"] .reviews-grid {
-    padding-top: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
 }
 
-.reviews-container[data-is-slider="true"] .reviews-grid:before {
+/* .reviews-container[data-is-slider="true"] .reviews-grid:before {
 	left: -2px;
 	background: rgb(255,255,255);
 	background: linear-gradient(90deg, rgba(255,255,255,1) 63%, rgba(255,255,255,0) 100%);
@@ -45,20 +46,22 @@
 	right: -2px;
 	background: rgb(255,255,255);
 	background: linear-gradient(270deg, rgba(255,255,255,1) 63%, rgba(255,255,255,0) 100%);
-}
+} */
 
-.reviews-container .reviews-grid .slick-slide {
+/* .reviews-container .reviews-grid .slick-slide {
     margin: 0 15px;
 }
 
 .reviews-container .reviews-grid .slick-list {
     margin: 0 -15px;
 	overflow: visible;
-}
+} */
 
 .reviews-container .reviews-grid .review-item {
     vertical-align: top;
     display: inline-block;
+    width: 100%;
+    display: block;
 }
 
 .reviews-container .reviews-grid .review-item .review-stars {
@@ -99,12 +102,12 @@
 }
 
 .reviews-container .reviews-grid .review-item .review-stars ul li.empty-star {
-	filter: grayscale(100%) brightness(119%);
+    filter: grayscale(100%) brightness(119%);
 }
 
 .reviews-container .reviews-grid .review-body {
-    -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.05); 
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.03);
     border-radius: 10px;
     padding: 35px;
     background-color: #FFF;
@@ -121,7 +124,7 @@
     line-height: var(--google-reviews-body-lineheight);
     color: #6E6E6E;
     margin-bottom: 35px;
-	transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .reviews-container[data-read-more="false"] .reviews-grid .review-body p {
@@ -140,16 +143,16 @@
     height: 30px;
     bottom: 0;
     left: 0;
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .reviews-container .reviews-grid .review-body.open p {
-	height: fit-content !important;
+    height: fit-content !important;
 }
 
 .reviews-container .reviews-grid .review-body.open .review-read-more a {
-	display: none !important;
+    display: none !important;
 }
 
 .reviews-container .reviews-grid .review-item .review-body .review-read-more {
@@ -204,13 +207,11 @@
     color: #6E6E6E;
 }
 
-.reviews-container .reviews-grid .review-item .review-author-picture .review-picture {
-    
-}
+.reviews-container .reviews-grid .review-item .review-author-picture .review-picture {}
 
 .reviews-arrow {
     --arrow-dist: 125px;
-    
+
     position: absolute;
     top: -20px;
     z-index: 10;
@@ -225,11 +226,11 @@
 }
 
 .reviews-arrow.prev {
-    left: calc(var(--arrow-dist) * -1);
+    left: -100px;
 }
 
 .reviews-arrow.next {
-    right: calc(var(--arrow-dist) * -1);
+    right: -100px;
 }
 
 .reviews-arrow:after {
@@ -243,12 +244,12 @@
     color: #FFF;
     text-align: center;
     font-size: 18px;
-	font-weight: 600;
+    font-weight: 600;
     position: absolute;
     top: 50%;
     pointer-events: all;
     transition: all 0.3s;
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .reviews-arrow:hover:after {
@@ -279,16 +280,16 @@
 }
 
 @media all and (max-width: 1350px) and (min-width: 768px) {
-	.reviews-arrow {
-		height: calc(100% - 130px);
-	}
-	
-	.reviews-arrow:after {
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
-		font-size: 14px;
-	}
+    .reviews-arrow {
+        height: calc(100% - 130px);
+    }
+
+    .reviews-arrow:after {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+    }
 }
 
 @media all and (max-width: 1023px) and (min-width: 769px) {
@@ -303,27 +304,32 @@
     }
 }
 
+@media all and (max-width: 1023px) {
+    .reviews-container[data-is-slider="true"] .review-item {
+        padding-bottom: 30px;
+    }
+}
+
 @media all and (max-width: 767px) {
-	.reviews-container .reviews-grid:before, .reviews-container .reviews-grid:after {
-		display: none;
-	}
-	
-	.reviews-container .reviews-grid {
-		padding-left: 0;
-		padding-right: 0;
-		overflow: visible;
-	}
-	
-	.reviews-container .reviews-grid .review-item .review-body {
-		padding: 25px;
-		padding-top: 45px;
-	}
-	
-	.reviews-arrow {
-		display: none !important;
-	}
-	
-	.reviews-container .reviews-grid .review-item .review-body .review-read-more a {
-		
-	}
+    .reviews-container .reviews-grid:before,
+    .reviews-container .reviews-grid:after {
+        display: none;
+    }
+
+    .reviews-container .reviews-grid {
+        padding-left: 0;
+        padding-right: 0;
+        overflow: visible;
+    }
+
+    .reviews-container .reviews-grid .review-item .review-body {
+        padding: 25px;
+        padding-top: 45px;
+    }
+
+    .reviews-arrow {
+        display: none !important;
+    }
+
+    .reviews-container .reviews-grid .review-item .review-body .review-read-more a {}
 }
