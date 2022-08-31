@@ -28,7 +28,7 @@ if (!defined('ABSPATH')) // Or some other WordPress constant
 class Embark_GoogleReviews
 {
 
-    public function _default_template()
+    public static function _default_template()
     {
         return <<<EOD
 <div class='review-item'>
@@ -51,7 +51,7 @@ class Embark_GoogleReviews
 EOD;
     }
 
-    public function _config()
+    public static function _config()
     {
         $config_options = self::_default_options();
 
@@ -67,12 +67,12 @@ EOD;
         return $config;
     }
 
-    public function _default_options()
+    public static function _default_options()
     {
         return get_option('_embark_google_reviews_settings_option_name');
     }
 
-    public function _template()
+    public static function _template()
     {
         $config = self::_config();
 
@@ -81,7 +81,7 @@ EOD;
         echo '</template>';
     }
 
-    public function _shortcode()
+    public static function _shortcode()
     {
         $config = self::_config();
 
@@ -105,7 +105,7 @@ EOD;
         return $output;
     }
 
-    public function _embark_google_reviews_settings_add_plugin_page()
+    public static function _embark_google_reviews_settings_add_plugin_page()
     {
         add_options_page(
             'Google Reviews Settings', // page_title
@@ -116,7 +116,7 @@ EOD;
         );
     }
 
-    public function _embark_google_reviews_settings_create_admin_page()
+    public static function _embark_google_reviews_settings_create_admin_page()
     {
         ?>
 		<div class="wrap">
@@ -133,7 +133,7 @@ settings_fields('_embark_google_reviews_settings_option_group');
 		</div>
 	<?php }
 
-    public function _embark_google_reviews_settings_page_init()
+    public static function _embark_google_reviews_settings_page_init()
     {
         register_setting(
             '_embark_google_reviews_settings_option_group', // option_group
@@ -205,7 +205,7 @@ settings_fields('_embark_google_reviews_settings_option_group');
 
     }
 
-    public function _embark_google_reviews_settings_sanitize($input)
+    public static function _embark_google_reviews_settings_sanitize($input)
     {
         $sanitary_values = array();
         if (isset($input['google_api_key_0'])) {
@@ -235,12 +235,12 @@ settings_fields('_embark_google_reviews_settings_option_group');
         return $sanitary_values;
     }
 
-    public function _embark_google_reviews_settings_section_info()
+    public static function _embark_google_reviews_settings_section_info()
     {
 
     }
 
-    public function _embark_google_reviews_settings_section_info_2()
+    public static function _embark_google_reviews_settings_section_info_2()
     {
         $tags = [
             "index",
@@ -288,7 +288,7 @@ foreach ($vars as $var) {
         echo self::_template();
     }
 
-    public function google_api_key_0_callback()
+    public static function google_api_key_0_callback()
     {
         $config = self::_config();
 
@@ -298,7 +298,7 @@ foreach ($vars as $var) {
         );
     }
 
-    public function place_id_1_callback()
+    public static function place_id_1_callback()
     {
         $config = self::_config();
 
@@ -308,7 +308,7 @@ foreach ($vars as $var) {
         );
     }
 
-    public function is_slider_2_callback()
+    public static function is_slider_2_callback()
     {
         $config = self::_config();
 
@@ -322,7 +322,7 @@ foreach ($vars as $var) {
         );
     }
 
-    public function read_more_3_callback()
+    public static function read_more_3_callback()
     {
         $config = self::_config();
 
@@ -336,7 +336,7 @@ foreach ($vars as $var) {
         );
     }
 
-    public function minimum_star_rating_4_callback()
+    public static function minimum_star_rating_4_callback()
     {
         $config = self::_config();
 
@@ -354,7 +354,7 @@ foreach ($vars as $var) {
 		</select> <?php
 }
 
-    public function template_0_callback()
+    public static function template_0_callback()
     {
         $config = self::_config();
 
@@ -364,7 +364,7 @@ foreach ($vars as $var) {
         );
     }
 
-    public function init_admin()
+    public static function init_admin()
     {
         if (is_admin()) {
             add_action('admin_menu', array('Embark_GoogleReviews', '_embark_google_reviews_settings_add_plugin_page'));
@@ -380,7 +380,7 @@ foreach ($vars as $var) {
         }
     }
 
-    public function init()
+    public static function init()
     {
         $config = self::_config();
 
@@ -391,19 +391,25 @@ foreach ($vars as $var) {
             return $links;
         });
 
-        wp_enqueue_script('maps-js', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $config->api_key, array(), '', false);
-        wp_enqueue_script('embark-google-reviews-js', plugin_dir_url(__FILE__) . 'js/embark-google-reviews.js', array(), '', false);
-        wp_enqueue_style('embark-google-reviews-css', plugin_dir_url(__FILE__) . 'css/embark-google-reviews.css');
 
-        if ($config->is_slider === 'true') {
-            // Tiny Slider
-            wp_enqueue_style( 'tiny-css', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css' );
-            wp_enqueue_script( 'tiny-js', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js', array(), '', true );
 
-            // Slick Slider
-            wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
-            wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array(), '', true);
-        }
+
+        // When wp_enqueue_scripts is called, the scripts and styles are enqueued.
+        add_action('wp_enqueue_scripts', function () {
+            wp_enqueue_script('maps-js', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $config->api_key, array(), '', false);
+            wp_enqueue_script('embark-google-reviews-js', plugin_dir_url(__FILE__) . 'js/embark-google-reviews.js', array(), '', false);
+            wp_enqueue_style('embark-google-reviews-css', plugin_dir_url(__FILE__) . 'css/embark-google-reviews.css');
+    
+            if ($config->is_slider === 'true') {
+                // Tiny Slider
+                wp_enqueue_style( 'tiny-css', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css' );
+                wp_enqueue_script( 'tiny-js', '//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js', array(), '', true );
+    
+                // Slick Slider
+                wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
+                wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array(), '', true);
+            }
+        });
 
         self::init_admin();
 
@@ -413,4 +419,10 @@ foreach ($vars as $var) {
     }
 }
 
-Embark_GoogleReviews::init();
+
+
+// Embark_GoogleReviews::init();
+
+add_action('plugins_loaded', function () {
+    Embark_GoogleReviews::init();
+});
