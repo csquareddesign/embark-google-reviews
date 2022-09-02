@@ -397,7 +397,7 @@ foreach ($vars as $var) {
         // When wp_enqueue_scripts is called, the scripts and styles are enqueued.
         add_action('wp_enqueue_scripts', function () {
             $config = self::_config();
-            wp_enqueue_script('maps-js', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $config->api_key, array(), '', false);
+            wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=' . $config->api_key, array(), '', false);
             wp_enqueue_script('embark-google-reviews-js', plugin_dir_url(__FILE__) . 'js/embark-google-reviews.js', array(), '', false);
             wp_enqueue_style('embark-google-reviews-css', plugin_dir_url(__FILE__) . 'css/embark-google-reviews.css');
     
@@ -424,6 +424,6 @@ foreach ($vars as $var) {
 
 // Embark_GoogleReviews::init();
 
-add_action('plugins_loaded', function () {
+add_action('init', function () {
     Embark_GoogleReviews::init();
 });
